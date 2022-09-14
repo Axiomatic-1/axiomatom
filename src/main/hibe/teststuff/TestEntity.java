@@ -1,6 +1,6 @@
-package testStuff;
+package main.hibe.teststuff;
 
-import annotations.Existence;
+import main.hibe.annotations.Existence;
 
 @Existence
 public class TestEntity {

@@ -1,6 +1,6 @@
-package testStuff;
+package main.hibe.teststuff;
 
-import coreJdbc.JDBCTemplate;
+import main.hibe.coreJdbc.JDBCTemplate;
 
 import java.sql.Connection;
 import java.sql.SQLException;
