@@ -1,4 +1,4 @@
-package testStuff;
+package teststuff;
 
 import coreJdbc.JDBCTemplate;
 

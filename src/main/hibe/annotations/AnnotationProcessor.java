@@ -1,48 +1,72 @@
-package main.hibe.annotations;
+package annotations;
 
-import main.hibe.testStuff.TestEntity;
+import teststuff.TestEntity;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Enumeration;
+import java.util.*;
+import java.util.logging.Logger;
 
 public class AnnotationProcessor {
-    public static void main(String[] args) throws IOException {
-        TestEntity t = new TestEntity();
-        t.toString();
+    Logger logger = Logger.getLogger(AnnotationProcessor.class.getName());
+
+    public static void main(String[] args) {
         AnnotationProcessor a = new AnnotationProcessor();
-        a.getAllAnnotatedClasses("main/hibe/");
+        System.out.println(a.getExistence(TestEntity.class));
     }
 
-    public void getAllAnnotatedClasses(String basePackage) throws IOException {
+    private Map<Class<?>, Class<?>> getAllAnnotatedClasses(String basePackage) {
+        Map<Class<?>, Class<?>> existence = new HashMap();
         try {
             ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 
-            String path = basePackage.replace('.', '/');
-            Enumeration<URL> resources = classLoader.getResources(path);
+            String path = basePackage.replace("/", ".");
+            Enumeration<URL> resources = classLoader.getResources(basePackage);
+
             while (resources.hasMoreElements()) {
                 URL resource = resources.nextElement();
                 File file = new File(resource.toURI());
 
-                for (File classFile : file.listFiles()) {
+                for (File classFile : Objects.requireNonNull(file.listFiles())) {
                     String filename = classFile.getName();
-
-                    System.out.println(filename);
-
-
-
-                    if (filename.endsWith(".class")){
-                        Class classObject = Class.forName(filename);
-
-                    if (classObject.isAnnotationPresent(Existence.class)) {
-                        System.out.println("Existence " + filename);
-                    }}
+                    if (filename.endsWith(".class")) {
+                        String className = filename.substring(0, filename.lastIndexOf('.'));
+                        Class<?> classObject = Class.forName(path + '.' + className);
+                        if (classObject.isAnnotationPresent(Existence.class)) {
+                            existence.put(classObject, classObject);
+                            logger.info("Existence " + classObject.getName());
+                        }
+                    }
                 }
             }
         } catch (IOException | URISyntaxException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
+        return existence;
     }
+
+    public Class<?> getExistence(Class<?> cl) {
+        return getAllAnnotatedClasses("main/hibe/teststuff").get(cl);
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
