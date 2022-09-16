@@ -22,18 +22,18 @@ public class AnnotationProcessor {
         try {
             ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 
-            String path = basePackage.replace("/", ".");
-            Enumeration<URL> resources = classLoader.getResources(basePackage);
+            String path = basePackage.replace(".", "/");
+            Enumeration<URL> resources = classLoader.getResources(path);
 
             while (resources.hasMoreElements()) {
                 URL resource = resources.nextElement();
                 File file = new File(resource.toURI());
 
-                for (File classFile : Objects.requireNonNull(file.listFiles())) {
+                for (File classFile : file.listFiles()) {
                     String filename = classFile.getName();
                     if (filename.endsWith(".class")) {
                         String className = filename.substring(0, filename.lastIndexOf('.'));
-                        Class<?> classObject = Class.forName(path + '.' + className);
+                        Class<?> classObject = Class.forName(basePackage + '.' + className);
                         if (classObject.isAnnotationPresent(Existence.class)) {
                             existence.put(classObject, classObject);
                             logger.info("Existence " + classObject.getName());
@@ -48,7 +48,7 @@ public class AnnotationProcessor {
     }
 
     public Class<?> getExistence(Class<?> cl) {
-        return getAllAnnotatedClasses("main/hibe/teststuff").get(cl);
+        return getAllAnnotatedClasses("teststuff").get(cl);
     }
 
 
