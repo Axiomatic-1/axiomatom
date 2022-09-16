@@ -1,4 +1,4 @@
-package main.hibe.annotations;
+package annotations;
 @Existence
 public class AD {
 }
