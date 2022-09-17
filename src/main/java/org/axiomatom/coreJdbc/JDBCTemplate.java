@@ -1,4 +1,4 @@
-package hibe.coreJdbc;
+package org.axiomatom.coreJdbc;
 
 import org.postgresql.ds.PGConnectionPoolDataSource;
 
@@ -9,9 +9,10 @@ public class JDBCTemplate {
     PGConnectionPoolDataSource ds = new PGConnectionPoolDataSource();
     Connection connection = null;
 
+
     private void setUp() {
         ds.setServerNames(new String[]{"localhost"});
-        ds.setDatabaseName("hibe");
+        ds.setDatabaseName("java");
         ds.setUser("postgres");
         ds.setPassword("password");
     }

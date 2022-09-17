@@ -1,30 +1,28 @@
-package hibe.annotations.scanner;
+package org.axiomatom.annotations.scanner;
 
-import hibe.annotations.Existence;
+import org.axiomatom.annotations.Existence;
+import org.axiomatom.annotations.processor.AnnotationProcessor;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Enumeration;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AnnotationScanner {
     private final Logger logger = Logger.getLogger(AnnotationScanner.class.getName());
 
+    public static void main(String[] args) {
+        AnnotationProcessor p = new AnnotationProcessor();
+    }
 
     /**
      * Iterate throw all classes and filter classes with required annotations
      *
-     * @param packageName
+     * @param packageName The base package
      * @return The annotated classes
      */
     public Map<String, Class<?>> getAnnotatedClasses(String packageName) {
