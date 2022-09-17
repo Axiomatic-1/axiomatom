@@ -1,9 +1,14 @@
-package teststuff;
+package hibe.teststuff;
 
-import annotations.Existence;
+import hibe.annotations.Existence;
+import hibe.annotations.processor.AnnotationProcessor;
 
 @Existence
 public class Kurama {
     private String id;
     private String name;
+
+    public static void main(String[] args) {
+        AnnotationProcessor a = new AnnotationProcessor("hello");
+    }
 }

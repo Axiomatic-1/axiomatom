@@ -1,6 +1,6 @@
-package teststuff;
+package hibe.teststuff;
 
-import coreJdbc.JDBCTemplate;
+import hibe.coreJdbc.JDBCTemplate;
 
 import java.sql.Connection;
 import java.sql.SQLException;

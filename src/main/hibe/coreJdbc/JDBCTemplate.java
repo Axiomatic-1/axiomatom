@@ -1,4 +1,4 @@
-package coreJdbc;
+package hibe.coreJdbc;
 
 import org.postgresql.ds.PGConnectionPoolDataSource;
 
