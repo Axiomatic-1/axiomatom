@@ -1,6 +1,6 @@
-package hibe.teststuff;
+package org.axiomatom.teststuff;
 
-import hibe.coreJdbc.JDBCTemplate;
+import org.axiomatom.coreJdbc.JDBCTemplate;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,9 +13,9 @@ public class Test {
         JDBCTemplate jdbc = new JDBCTemplate();
 
         try (
-            Connection connection = jdbc.getConnect();
-            Statement statement =  connection.createStatement();
-            ){
+                Connection connection = jdbc.getConnect();
+                Statement statement = connection.createStatement();
+        ) {
             statement.execute("CREATE TABLE Pe (\n" +
                     "    PersonID int,\n" +
                     "    LastName varchar(255),\n" +

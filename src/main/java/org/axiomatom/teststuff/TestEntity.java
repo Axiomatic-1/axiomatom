@@ -1,6 +1,6 @@
-package hibe.teststuff;
+package org.axiomatom.teststuff;
 
-import hibe.annotations.Existence;
+import org.axiomatom.annotations.Existence;
 
 @Existence
 public class TestEntity {
